@@ -4,8 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./src/styles/normalize.css">
+  <link rel="stylesheet" href="./src/styles/base.css">
+  <link rel="stylesheet" href="./src/styles/header.css">
 </head>
 <body>
-  
+  <header class="header">
+    <div class="content header-content">
+      <img class="logo" src="./src/assets/icon/logo-128.png" alt="logo"/>
+      <nav class="nav">
+        <ul class="nav-menu">
+          <li><a class="nav-menu__link nav-menu__link_active" href="#about">About me</a></li>
+          <li><a class="nav-menu__link" href="#skills">Skills</a></li>
+          <li><a class="nav-menu__link" href="#projects">Projects</a></li>
+          <li><a class="nav-menu__link" href="#contacts">Contacts</a></li>
+        </ul>
+      </nav>
+      <div class="burger-menu">
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <script src="./src/scripts/burger.js"></script>
 </body>
 </html>

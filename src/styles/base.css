@@ -1,0 +1,30 @@
+:root {
+  --primary-color: #16ae59;
+  --primary-light-color: #6cc689;
+  --primary-lightest-color: #e5f5ea;
+
+  --background-color: #fff;
+
+  --secondary-color: #114d8c;
+  --secondary-light-color: #1c8fd6;
+
+  --dark-color: #0C0C0E;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.content {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.text {
+  font-size: 1rem;
+}
