@@ -1,0 +1,93 @@
+.greeting-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.greeting__text {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.name {
+  color: var(--secondary-color);
+  font-size: 2.5rem;
+}
+
+.greeting__main-skill {
+  font-size: 1.3rem;
+  margin-bottom: var(--margin-small);
+}
+
+.greeting__description {
+  text-align: center;
+  margin-bottom: var(--margin-big);
+  font-size: 1.3rem;
+}
+
+.greeting__photo {
+  width: 100%;
+  margin-bottom: var(--margin-big);
+}
+
+.my-photo {
+  width: 100%;
+}
+
+.main-points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-small);
+
+  margin-bottom: var(--margin-big);
+}
+
+.main-point {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  font-size: 1.3rem;
+}
+
+.check {
+  margin-right: var(--margin-small);
+  height: 1.3rem;
+}
+
+@media screen and (min-width: 645px) {
+  .greeting-container {
+    flex-direction: row;
+  }
+
+  .greeting__photo {
+    flex: 1;
+    flex-shrink: 0;
+    margin-right: var(--margin-big);
+    margin-bottom: 0;
+  }
+
+  .greeting__infos {
+    flex: 3;
+    flex-shrink: 0;
+  }
+
+  .greeting__description {
+    text-align: start;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .greeting-container {
+    font-size: 1.3rem;
+  }
+
+  .greeting__text {
+    font-size: 2rem;
+  }
+
+  .name {
+    font-size: 4rem;
+  }
+}

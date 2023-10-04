@@ -139,7 +139,7 @@
   to {opacity: 1}
 }
 
-@media (min-width: 675px) {
+@media (min-width: 715px) {
   .burger-menu {
     display: none;
     margin-left: 40px;

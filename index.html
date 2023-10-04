@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="./src/styles/normalize.css">
   <link rel="stylesheet" href="./src/styles/base.css">
   <link rel="stylesheet" href="./src/styles/header.css">
+  <link rel="stylesheet" href="./src/styles/greeting.css">
 </head>
 <body>
   <header class="header">
@@ -19,7 +20,8 @@
       <img class="logo" src="./src/assets/icon/logo-128.png" alt="logo"/>
       <nav class="nav">
         <ul class="nav-menu">
-          <li><a class="nav-menu__link nav-menu__link_active" href="#about">About me</a></li>
+          <li><a class="nav-menu__link" href="#">Home</a></li>
+          <li><a class="nav-menu__link" href="#about">About me</a></li>
           <li><a class="nav-menu__link" href="#skills">Skills</a></li>
           <li><a class="nav-menu__link" href="#projects">Projects</a></li>
           <li><a class="nav-menu__link" href="#contacts">Contacts</a></li>
@@ -30,6 +32,35 @@
       </div>
     </div>
   </header>
+
+  <main>
+    <section class="content greeting" id="greeting">
+      <div class="greeting-container">
+        <div class="greeting__photo">
+          <img src="./src/assets/img/Me_rounded.png" alt="Me" class="my-photo">
+        </div>
+        <div class="greeting__infos">
+          <p class="text greeting__text">Hi, I'm<br><span class="name">Stanislav Mamulin</span></p>
+          <p class="text greeting__description">My brain and I enjoy programming</p>
+          <ul class="main-points">
+            <li class="text text_bold main-point">
+              <img src="./src/assets/icon/checkmark.svg" alt="proficient" class="check">
+              Full stack developer (JS/TS Stack)
+            </li>
+            <li class="text text_bold main-point">
+              <img src="./src/assets/icon/checkmark.svg" alt="proficient" class="check">
+              Front-end developer
+            </li>
+            <li class="text text_bold main-point">
+              <img src="./src/assets/icon/checkmark.svg" alt="proficient" class="check">
+              Back-end developer
+            </li>
+          </ul>
+          <button class="button resume-button">Download my resume</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script src="./src/scripts/burger.js"></script>
 </body>
