@@ -50,7 +50,7 @@ p {
   flex-shrink: 0;
 
   border: 0;
-  border-radius: 5px;
+  border-radius: 1rem;
   background: var(--primary-color);
   color: white;
   text-transform: capitalize;

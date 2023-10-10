@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="./src/styles/greeting.css">
   <link rel="stylesheet" href="./src/styles/about.css">
   <link rel="stylesheet" href="./src/styles/skills.css">
+  <link rel="stylesheet" href="./src/styles/projects.css">
+  <link rel="stylesheet" href="./src/styles/carousel.css">
 </head>
 <body>
   <header class="header">
@@ -90,9 +92,20 @@
       </ul>
     </section>
 
+    <section class="content projects" id="projects">
+      <h2>Projects</h2>
+      <div class="carousel-container">
+        <div class="carousel__arrow carousel__arrow_left"></div>
+        <div class="projects-container"></div>
+        <div class="carousel__arrow carousel__arrow_right"></div>
+      </div>
+    </section>
+
   </main>
 
   <script src="./src/scripts/burger.js"></script>
   <script src="./src/scripts/skills.js"></script>
+  <script src="./src/scripts/projects.js" type="module"></script>
+  <script src="./src/scripts/carousel.js" type="module"></script>
 </body>
 </html>
