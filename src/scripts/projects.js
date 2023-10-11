@@ -18,7 +18,7 @@ const projectsData = [
     name: "Early rise VK Bot",
     description: "I created this project, inspired by the book \"Magic Morning\". I created a bot for the social network VK, tracking the time for laying sleeping and getting up. Depending on the time of laying and the battles, a different number of points are accrued. You can open a tournament table for all participants, as well as build a visual schedule of laying time and getting up.",
     titleImage: "early-riser.png",
-    images: "",
+    images: [],
     technologies: ["JavaScript", "NodeJS", "MongoDB (mongoose)"],
     link: "",
     sourceCode: "https://github.com/StanislavMamulin/Early-Rise-VKBot",
@@ -48,7 +48,7 @@ const projectsData = [
       'Page 404'
     ],
     titleImage: "online-store.png",
-    images: "",
+    images: [],
     technologies: ["TypeScript", "Webpack", "SCSS", "HTML", "Git", "GitHub - teamwork"],
     link: "https://stanislavmamulin-online-store-team.netlify.app/",
     sourceCode: "https://github.com/StanislavMamulin/online-store-team",
@@ -69,7 +69,7 @@ const projectsData = [
       'Displaying 404 error page'
     ],
     titleImage: "trello.jpeg",
-    images: "",
+    images: [],
     technologies: ["TypeScript", "Angular", "RxJS", "Angular Material", "Node.js", "Connect middleware framework", "CRUD", "JWT", "CORS", "Git", "Gitflow", "GitHub - teamwork", "REST API"],
     link: "https://rsclone-trello.netlify.app/main",
     sourceCode: "https://github.com/StanislavMamulin/rsclone-trello",
@@ -85,7 +85,7 @@ const projectsData = [
       'Localization into 2 languages'
     ],
     titleImage: "graphiql.png",
-    images: "",
+    images: [],
     technologies: ["TypeScript", "GraphQL", "", "React 18 + suspense feature", "Redux, Redux Toolkit Query", "React hook form", "Vite", "Firebase Authentication", "Private routes", "404 error page", "Error boundary", "Internalization by i18next", "Semantic layout", "Git", "Gitflow", "GitHub - teamwork", "GitHub Projects"],
     link: "https://graphiql-ksv-rss.netlify.app/",
     sourceCode: "https://github.com/StanislavMamulin/graphiql-app",
@@ -101,7 +101,7 @@ const projectsData = [
       'Authentication and Authorization with JWT.'
     ],
     titleImage: "",
-    images: "",
+    images: [],
     technologies: ["TypeScript", "Node.js", "NestJS", "PostgreSQL", "Prisma ORM", "Docker", "REST API", "CRUD", "JWT"],
     link: "",
     sourceCode: "https://github.com/StanislavMamulin/nodejs2023uz-service",
@@ -111,54 +111,190 @@ const projectsData = [
 
 function createProjects() {
   const projectsContainer = document.querySelector('.projects-container');
-
+  
   projectsData.forEach(project => {
+    const { name, type, titleImage, sourceCode, link } = project;
     const projectContainer = document.createElement('div');
     projectContainer.classList.add('project');
-
-    const titleImage = project.type === projectTypes.backend ? BACKEND_IMAGE_PATH : `${IMAGE_FOLDER_PATH}/${project.titleImage}`;
-
-    projectContainer.innerHTML = `
-      <div class="project__info">
-        <div class="project__screenshot-container">
-          <img class="project__screenshot" src="${titleImage}" alt="">
-        </div>
-
-        <div class="project__description">
-          <p class="text text_bold project__name">${project.name}</p>
-          <p class="text project__type">${project.type}</p>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button
-          class="button action"
-          type="button"
-          onclick="window.open('${project.sourceCode}', '_blank')"
-        >
-          Source code
-        </button>
-        <button class="button action" type="button">Details</button>
-      </div>      
-    `;
-
-    if (project.link) {
-      const siteBtn = document.createElement('button');
-      siteBtn.classList.add("button", "action", "action_site");
-      siteBtn.type = "button";
-      siteBtn.innerText = "Visit site";
-
-      siteBtn.addEventListener('click', () => window.open(`${project.link}`, '_blank'));
-
-      // const actions = projectContainer.querySelector('.actions');
-      // actions?.prepend(siteBtn);
-      const screenshot = projectContainer.querySelector('.project__screenshot-container');
-      console.log('screenshot', screenshot);
-      screenshot?.append(siteBtn);
+    
+    const titleImageURL = type === projectTypes.backend ? BACKEND_IMAGE_PATH : `${IMAGE_FOLDER_PATH}/${titleImage}`;
+    
+    const projectTemplate = document.querySelector('.template-project');
+    const projectClone = projectTemplate.content.cloneNode(true);
+    
+    const screenshotEl = projectClone.querySelector('.project__screenshot');
+    screenshotEl.src = titleImageURL;
+    screenshotEl.alt = name;
+    
+    const nameEl = projectClone.querySelector('.project__name');
+    nameEl.innerText = name;
+    
+    const typeEl = projectClone.querySelector('.project__type');
+    typeEl.innerText = type;
+    
+    const sourceCodeBtn = projectClone.querySelector('.project__source-code');
+    sourceCodeBtn?.addEventListener('click', () => window.open(`${sourceCode}`, '_blank'));
+    
+    projectContainer.appendChild(projectClone);
+    
+    if (link) {
+      addSiteVisitBtn(projectContainer, link);
     }
-
+    
+    const detailsBtn = projectContainer.querySelector('.project__details');
+    addModal(project, detailsBtn);
+    
     projectsContainer.appendChild(projectContainer);
   });
+}
+
+function addSiteVisitBtn(projectContainer, link) {
+  const siteBtn = document.createElement('button');
+  siteBtn.classList.add("button", "action", "action_site");
+  siteBtn.type = "button";
+  siteBtn.innerText = "Visit site";
+  
+  siteBtn.addEventListener('click', () => window.open(`${link}`, '_blank'));
+  
+  const screenshot = projectContainer.querySelector('.project__screenshot-container');
+  
+  screenshot?.append(siteBtn);
+}
+
+function addModal(projectData, button) {
+  const modal = document.querySelector('.modal');
+  
+  button?.addEventListener('click', () => {
+    const content = createDetails(projectData, modal);
+    showModal(content);
+  });
+  
+  window.addEventListener('click', event => {
+    if (event.target === modal) {
+      modal.style.visibility = 'hidden';
+    }
+  })
+}
+
+function createDetails(projectData, modal) {
+  const { name, description, titleImage, images, technologies, type } = projectData;
+  
+  const imagesEl = modal.querySelector('.project__images');
+  const nameEl = modal.querySelector('.project__name');
+  const descriptionEl = modal.querySelector('.project__description-text');
+  const technologiesEl = modal.querySelector('.project__technologies');
+  const typeEl = modal.querySelector('.project__type');
+  
+  nameEl.innerText = name;
+  descriptionEl.innerText = description;
+  technologiesEl.innerText = `Technologies:\n ${technologies.join(', ')}`;
+  typeEl.innerText = type;
+  
+  imagesEl.innerHTML = '';
+  
+  [titleImage, ...images].forEach((image, i, images) => {
+    const imageEl = document.createElement('img');
+    const imagePath = `${IMAGE_FOLDER_PATH}/${image}`;
+    
+    imageEl.classList.add('project__image');
+    imageEl.src = imagePath;
+    
+    imageEl.addEventListener('click', () => {
+      const bigImage = document.createElement('img');
+      bigImage.classList.add('project__image_big');
+      bigImage.src = imagePath;
+      
+      showImageModal(bigImage);
+    });
+
+    if (images.length < 3) {
+      const projectsContainer = document.querySelector('.projects-container');
+      const gap = getComputedStyle(projectsContainer).getPropertyValue('--gap-between-projects');
+
+      imageEl.style.width = `calc((100% - 2 * ${gap}) / ${images.length})`;
+    }
+    toggleArrows(images.length);
+    
+    imagesEl.append(imageEl);
+  });
+  
+  let closeButton = document.querySelector('.modal__close');
+  if (!closeButton) {
+    closeButton = getCloseButton();
+    modal.append(closeButton);
+  }
+  
+  closeButton.addEventListener('click', () => {
+    modal.style.visibility = 'hidden';
+  });
+  
+  new Carousel({
+    container: ".project__images",
+    prev: ".carousel__arrow_left_modal",
+    next: ".carousel__arrow_right_modal",
+  }); 
+}
+
+function toggleArrows(imagesCount) {
+  const arrowLeft = document.querySelector('.carousel__arrow_left_modal');
+  const arrowRight = document.querySelector('.carousel__arrow_right_modal');
+
+  if (imagesCount < 3) {
+    arrowLeft.style.display = 'none';
+    arrowRight.style.display = 'none';
+  } else {
+    arrowLeft.style.display = 'block';
+    arrowRight.style.display = 'block';
+  }
+}
+
+function getCloseButton(htmlSymbol = '&times;') {
+  const closeBtn = document.createElement('button');
+  closeBtn.classList.add('button', 'modal__close');
+  closeBtn.type = 'button';
+  closeBtn.innerHTML = htmlSymbol;
+  
+  return closeBtn;
+}
+
+function showImageModal(image) {
+  const modal = document.createElement('div');
+  modal.classList.add('image-modal');
+  
+  modal.append(getCloseButton());
+  modal.append(image);
+  
+  document.body.append(modal);
+  toggleBlurModal();
+  
+  const closeBtn = modal.querySelector('.modal__close');
+  
+  closeBtn.addEventListener('click', () => {
+    closeImageModal(modal);
+  });
+  
+  window.addEventListener('click', event => {
+    if (event.target === modal) {
+      closeImageModal(modal);
+    }
+  });
+}
+
+function toggleBlurModal() {
+  const details = document.querySelector('.modal');
+  
+  details.classList.toggle('modal_blur');
+}
+
+function showModal() {
+  const modal = document.querySelector('.modal');
+  
+  modal.style.visibility = 'visible';
+}
+
+function closeImageModal(modal) {
+  modal.remove();
+  toggleBlurModal();
 }
 
 createProjects();
@@ -168,4 +304,3 @@ new Carousel({
   prev: ".carousel__arrow_left",
   next: ".carousel__arrow_right",
 });
-

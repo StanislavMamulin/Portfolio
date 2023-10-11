@@ -16,11 +16,10 @@ export class Carousel {
    * @param selectors.prev - selector of container with carousel items
    * @param selectors.next - selector of container with carousel items
    */
-  constructor(selectors) {
-    
+  constructor(selectors) {   
     const container = document.querySelector(selectors.container);
     const children = container.children;
-    
+   
     this.#elements = {
       container,
       children,

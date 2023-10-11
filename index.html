@@ -99,9 +99,42 @@
         <div class="projects-container"></div>
         <div class="carousel__arrow carousel__arrow_right"></div>
       </div>
+      <div class="modal">
+        <div class="modal__content">
+          <div class="carousel-container">
+            <div class="carousel__arrow carousel__arrow_left carousel__arrow_left_modal"></div>
+            <div class="projects-container project__images"></div>
+            <div class="carousel__arrow carousel__arrow_right carousel__arrow_right_modal"></div>
+          </div>
+          <p class="project__name project__name_modal"></p>
+          <p class="project__description-text"></p>
+          <p class="project__technologies"></p>
+          <p class="project__type project__type_modal"></p>
+        </div>
+      </div>
     </section>
 
   </main>
+
+  <template class="template-project">
+    <div class="project__info">
+      <div class="project__screenshot-container">
+        <img class="project__screenshot" src="${titleImage}" alt="">
+      </div>
+
+      <div class="project__description">
+        <p class="text text_bold project__name"></p>
+        <p class="text project__type"></p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="button action project__source-code" type="button">
+        Source code
+      </button>
+      <button class="button action project__details" type="button">Details</button>
+    </div>   
+  </template>
 
   <script src="./src/scripts/burger.js"></script>
   <script src="./src/scripts/skills.js"></script>
