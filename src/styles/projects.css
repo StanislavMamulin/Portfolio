@@ -144,10 +144,6 @@
   backdrop-filter: blur(8px);
 }
 
-.modal_blur {
-  filter: blur(8px);
-}
-
 .modal__content {
   background-color: var(--background-color);
   border-radius: 1rem;
@@ -174,6 +170,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  backdrop-filter: blur(8px);
 }
 
 .modal-image {

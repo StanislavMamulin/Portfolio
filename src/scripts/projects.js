@@ -265,7 +265,6 @@ function showImageModal(image) {
   modal.append(image);
   
   document.body.append(modal);
-  toggleBlurModal();
   
   const closeBtn = modal.querySelector('.modal__close');
   
@@ -280,12 +279,6 @@ function showImageModal(image) {
   });
 }
 
-function toggleBlurModal() {
-  const details = document.querySelector('.modal');
-  
-  details.classList.toggle('modal_blur');
-}
-
 function showModal() {
   const modal = document.querySelector('.modal');
   
@@ -294,7 +287,6 @@ function showModal() {
 
 function closeImageModal(modal) {
   modal.remove();
-  toggleBlurModal();
 }
 
 createProjects();
