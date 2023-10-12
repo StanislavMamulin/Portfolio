@@ -1,0 +1,14 @@
+.footer {
+  background: var(--primary-color);
+  margin: 0 auto;
+  text-align: center;
+
+  padding: var(--margin-small);
+}
+
+@media screen and (min-width: 400px) {
+  .footer__name {
+    font-size: 1.5rem;
+    font-stretch: 200%;
+  }
+}

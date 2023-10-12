@@ -46,6 +46,18 @@ body {
   border-bottom: 2px solid var(--secondary-color);
 }
 
+.text_light {
+  color: white;
+}
+
+.text_big {
+  font-size: 2rem;
+}
+
+.text_small {
+  font-size: 0.7rem;
+}
+
 p {
   margin: 0;
 }
@@ -74,6 +86,7 @@ p {
 
 section {
   padding: var(--margin-default);
+  margin-bottom: var(--margin-default) !important;
 }
 
 ul {
