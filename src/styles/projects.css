@@ -142,6 +142,8 @@
   background-color: rgba(0, 0, 0, 0.5);
 
   backdrop-filter: blur(8px);
+
+  z-index: 999;
 }
 
 .modal__content {
