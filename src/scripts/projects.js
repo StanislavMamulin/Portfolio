@@ -165,13 +165,13 @@ function addModal(projectData, button) {
   const modal = document.querySelector('.modal');
   
   button?.addEventListener('click', () => {
-    const content = createDetails(projectData, modal);
-    showModal(content);
+    createDetails(projectData, modal);
+    showModal();
   });
   
   window.addEventListener('click', event => {
     if (event.target === modal) {
-      modal.style.visibility = 'hidden';
+      closeModal(modal);
     }
   })
 }
@@ -225,7 +225,7 @@ function createDetails(projectData, modal) {
   }
   
   closeButton.addEventListener('click', () => {
-    modal.style.visibility = 'hidden';
+    closeModal(modal);
   });
   
   new Carousel({
@@ -283,6 +283,12 @@ function showModal() {
   const modal = document.querySelector('.modal');
   
   modal.style.visibility = 'visible';
+  document.body.style.overflow = 'hidden'; // disable scrolling
+}
+
+function closeModal(modal) {
+  modal.style.visibility = 'hidden';
+  document.body.style.overflow = 'auto'; // enable scrolling
 }
 
 function closeImageModal(modal) {
