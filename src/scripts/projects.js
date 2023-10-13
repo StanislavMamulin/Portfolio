@@ -107,7 +107,12 @@ function createDetails(projectData, modal) {
       const gap = getComputedStyle(projectsContainer).getPropertyValue('--gap-between-projects');
 
       imageEl.style.width = `calc((100% - 2 * ${gap}) / ${images.length})`;
+      imagesEl.style.justifyContent = 'center';
+    } else {
+      imagesEl.style.justifyContent = 'flex-start';
+    
     }
+
     toggleArrows(images.length);
     
     imagesEl.append(imageEl);
