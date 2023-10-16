@@ -2,8 +2,10 @@
   background: var(--primary-color);
   margin: 0 auto;
   text-align: center;
+  width: 100%;
 
   padding: var(--margin-small);
+  box-sizing: border-box;
 }
 
 @media screen and (min-width: 400px) {
